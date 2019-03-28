@@ -1,7 +1,7 @@
 ---
 title: "Statistical Learning Project"
-author: "1st Milestone"
-date: "Group ID and List of Group Members"
+author: "Group 20, Yao Wateba Appeti, Nicolò Petrungaro, Quentin Carton"
+date: "28/03/2019"
 output: pdf_document
 urlcolor: magenta
 linkcolor: cyan
@@ -38,14 +38,14 @@ header-includes:
 
 Research Title
 ----------
-*Provide a title for your research project.*
+*Human activity detection using smartphone's motion sensors.*
 
 ----------
 
 
 Abstract
 ----------
-*Short overview of the project.*
+*The goal of our project is to recognize and classify various human activities based on human's motion recorded by a smartphone motion-sensor, e.g walking, walking up-stairs, walking down-stairs, laying, sitting, standing, playing football, playing basketball, sprinting, running.*
 
 ----------
 
@@ -54,6 +54,10 @@ Main research aim \& framework
 ----------
 *Describe the main goal(s) of your project, why you are interested in it, 
 and how you came up with this idea. If there are also secondary goals, list them too.*
+
+The goal of our project is to identify the main differences beetwen some of various activities perfomed by humans in their daily life;
+so we wil have to extract the main features defining theese activities and build a model to classify them. The final goal could be to using the obtained models to understand how people spend their days, and evaluate and recognize their activities
+
 
 *Please cite any paper, webpage, video, other kind of support material that 
 help in understading the feasibility and relevance of your work.
