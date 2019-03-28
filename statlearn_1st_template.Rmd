@@ -56,12 +56,26 @@ Main research aim \& framework
 and how you came up with this idea. If there are also secondary goals, list them too.*
 
 The goal of our project is to identify the main differences beetwen some of various activities perfomed by humans in their daily life;
-so we wil have to extract the main features defining theese activities and build a model to classify them. The final goal could be to using the obtained models to understand how people spend their days, and evaluate and recognize their activities
+so we wil have to extract the main features defining theese activities and build a model to classify them. The final goal could be to using the obtained models to understand how people spend their days, and evaluate the level of sedententary and in a more general way their activities. Another important goal of this project is that it can help making recommendations based on activity level of people 
+to improve their health.
 
 
 *Please cite any paper, webpage, video, other kind of support material that 
 help in understading the feasibility and relevance of your work.
 List all the references in the last Section of this document.*
+
+An article from UCI website 
+Human Activity Recognition database built from the recordings of 30 subjects performing activities 
+of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensors.
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones#
+
+Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012 
+
+Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra, Jorge L. Reyes-Ortiz. Energy Efficient Smartphone-Based Activity Recognition using Fixed-Point Arithmetic. Journal of Universal Computer Science. Special Issue in Ambient Assisted Living: Home Care. Volume 19, Issue 9. May 2013
+
+Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. 4th International Workshop of Ambient Assited Living, IWAAL 2012, Vitoria-Gasteiz, Spain, December 3-5, 2012. Proceedings. Lecture Notes in Computer Science 2012, pp 216-223. 
+
+Jorge Luis Reyes-Ortiz, Alessandro Ghio, Xavier Parra-Llanas, Davide Anguita, Joan Cabestany, Andreu Català. Human Activity and Motion Disorder Recognition: Towards Smarter Interactive Cognitive Environments. 21th European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, ESANN 2013. Bruges, Belgium 24-26 April 2013.
 
 ----------
 
@@ -78,16 +92,33 @@ Data source(s)
 Data collection
 ----------
 *Explain how you are plannig to actually collect the data.*
+The data that we will use will be gathered by doing experiments . All the experiments of interest  will be conducted 
+using our smartphone in fixed conditions (duration, smartphone position on the body, same subjects...); then we will eventually integrate our data with datasets from the research made by UCI: "Human Activity Recognition Using Smartphones Data Set"
+
 *How many data-points do you (realistically) hope to collect?*
+The objective is to have at least 50 data points for every field of interest.
+
 *Do you foresee any difficulty in the data collection process?*
+The main diffult might be the condution of the experiments in the same fixed conditions.
+
 *Approximatively, how "heavy" do you think your dataset will be in the end?*
+The dataset will be aproximally around 500 units of instaces.
 
 ----------
 
 Model \& Methods
 ----------
 *To the best of your current knowledge, what type of statistical/data analysis tools do you feel will be relevant?*
+
+
+The most relevant one might be  clustering, classification methods or even Machine learning.
+
 *Explain briefly why.*
+
+   Our main objective is first of all to identify various motion and recognize them , based on their features . So these
+
+
+
 
 *If there's some cutting edge methods you may like to implement, cite it here adding the relevant paper(s)/book(s) in the last Section of this document.*
 
