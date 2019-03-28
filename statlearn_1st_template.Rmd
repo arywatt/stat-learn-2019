@@ -122,14 +122,21 @@ The most relevant one might be  clustering, classification methods or even Machi
 
 *If there's some cutting edge methods you may like to implement, cite it here adding the relevant paper(s)/book(s) in the last Section of this document.*
 
+- * deep learning
+
 ----------
 
 
 Software/Hardware Toolkit
 ----------
 *Tell me something about the software, programming language(s), package(s), module(s), framework(s) you're planning to use and why.*
+  -- Python, R
 *Are you also planning to use or develop [dedicated hardware](https://sciencejournal.withgoogle.com/developers/) for this task?*
+   The main hardware used is our smartphone to record experiments.
+   NO dedicated hardware to build.
+   
 *If you feel your home-computer/laptop may not be enough to handle everything, explain to me why and what kind of resources you may instead need.*
+-- NO
 
 ----------
 
