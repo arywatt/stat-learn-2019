@@ -7,6 +7,7 @@ urlcolor: magenta
 linkcolor: cyan
 geometry: margin=1.25cm
 fontsize: 12pt
+bibliography : biblio.bib
 header-includes:
 - \usepackage{bbold}
 - \usepackage{mdframed, xcolor}
@@ -38,14 +39,14 @@ header-includes:
 
 Research Title
 ----------
-*Human activity detection using smartphone's motion sensors.*
+Human activity recognition using smartphone's motion sensors.
 
 ----------
 
 
 Abstract
 ----------
-*The goal of our project is to recognize and classify various human activities based on human's motion recorded by a smartphone motion-sensor, e.g walking, walking up-stairs, walking down-stairs, laying, sitting, standing, playing football, playing basketball, sprinting, running.*
+The goal of our project is to recognize and classify various human activities based on human's motion recorded by a smartphone motion-sensor, e.g walking, walking up-stairs, walking down-stairs, laying, sitting, standing, playing football, playing basketball, sprinting, running.
 
 ----------
 
@@ -82,10 +83,17 @@ Jorge Luis Reyes-Ortiz, Alessandro Ghio, Xavier Parra-Llanas, Davide Anguita, Jo
 
 Data source(s) 
 ----------
-*As you know, the [Science Journal App](https://sciencejournal.withgoogle.com/experiments/) **must** be central to the achievement of your goal: this is essentially the only real constraint you have to deal with.*
+
 *Is it actually the case in your application or you can achieve the same goal easily with other tools? Explain.*
+  The science Journal App is essential to our project , so we will will be using it to collect the data , as our project is mainly based 
+  on motion sensors use . 
+ 
 *Are you using all the sensors or just a few? On this issue, the more the better!*
+   We are limiting the project to motion sensors , so the accelerometer and gyroscope sensors. These two are enough for our project
+
 *Of course you may want to collect also other data via questionnaire or other tools: list them all explaining why you need them.*
+  We could eventually need some more spedific apps providing more features to use on with smartphones motion sensors. There is also the possibility to use the API provided by The science Journal App to build some dedicated app with specific functionalities needed for 
+  the project.
 
 ----------
 
@@ -99,10 +107,10 @@ using our smartphone in fixed conditions (duration, smartphone position on the b
 The objective is to have at least 50 data points for every field of interest.
 
 *Do you foresee any difficulty in the data collection process?*
-The main diffult might be the condution of the experiments in the same fixed conditions.
+The main diffult might be the conduction of the experiments in the same fixed conditions.
 
 *Approximatively, how "heavy" do you think your dataset will be in the end?*
-The dataset will be aproximally around 500 units of instaces.
+The dataset will be aproximally around 500 units.
 
 ----------
 
@@ -130,10 +138,12 @@ The most relevant one might be  clustering, classification methods or even Machi
 Software/Hardware Toolkit
 ----------
 *Tell me something about the software, programming language(s), package(s), module(s), framework(s) you're planning to use and why.*
-  -- Python, R
+  The main software we will be using are RStudio for all the part relate to R programming. Some part of the project might also be done 
+  in Python using Anaconda distribution to provide both R and python package needed.
+  
 *Are you also planning to use or develop [dedicated hardware](https://sciencejournal.withgoogle.com/developers/) for this task?*
-   The main hardware used is our smartphone to record experiments.
-   NO dedicated hardware to build.
+   The main hardware used is our smartphone to record experiments. So we wont need to build some dedicatd harware. 
+   
    
 *If you feel your home-computer/laptop may not be enough to handle everything, explain to me why and what kind of resources you may instead need.*
 -- NO
