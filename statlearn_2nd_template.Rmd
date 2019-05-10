@@ -1,0 +1,109 @@
+---
+title: "Statistical Learning Project"
+author: "2nd Milestone"
+date: "Group ID and List of Group Members"
+output: pdf_document
+urlcolor: magenta
+linkcolor: cyan
+geometry: margin=1.25cm
+fontsize: 12pt
+header-includes:
+- \usepackage{bbold}
+- \usepackage{mdframed, xcolor}
+- \usepackage{graphicx}
+- \mdfsetup{frametitlealignment=\center}
+- \usepackage{multirow}
+- \definecolor{shadecolor}{rgb}{0.89,0.8,1}
+- \newcommand{\Prob}{\mathbb{P}}
+- \newcommand{\Exp}{\mathbb{E}}
+- \newcommand{\Var}{\mathbb{V}\mathrm{ar}}
+- \newcommand{\Cov}{\mathbb{C}\mathrm{ov}}
+- \newcommand{\blue}{\textcolor{blue}}
+- \newcommand{\darkgreen}{\textcolor[rgb]{0,.5,0}}
+- \newcommand{\gray}{\textcolor[rgb]{.3,.3,.3}}
+- \newcommand{\blueA}{\textcolor[rgb]{0,.1,.4}}
+- \newcommand{\blueB}{\textcolor[rgb]{0,.3,.6}}
+- \newcommand{\blueC}{\textcolor[rgb]{0,.5,.8}}
+- \newcommand{\evidenzia}{\textcolor[rgb]{0,0,0}}
+- \newcommand{\nero}{\textcolor[rgb]{0,0,0}}
+- \newcommand{\darkyel}{\textcolor[rgb]{.4,.4,0}}
+- \newcommand{\darkred}{\textcolor[rgb]{.6,0,0}}
+- \newcommand{\blueDek}{\textcolor[rgb]{0.6000000, 0.7490196, 0.9019608}}
+- \newcommand{\purpLarry}{\textcolor[rgb]{0.6901961, 0.2431373, 0.4784314}}
+- \newcommand{\lightgray}{\textcolor[rgb]{.8,.8,.8}}
+- \newcommand{\bfun}{\left\{\begin{array}{ll}}
+- \newcommand{\efun}{\end{array}\right.}
+---
+
+
+Research Title
+----------
+*Title for your research project.*
+
+----------
+
+
+Abstract / \underline{update}
+----------
+**ONLY IF** there are significant changes from the 1st milestone, provide a *short overview of the project.*
+
+----------
+
+
+Main research aim \& framework / \underline{update}
+----------
+**ONLY IF** there are significant changes from the 1st milestone, *describe the main goal(s) of your project, why you are interested in it, and how you came up with this idea. If there are also secondary goals, list them too.*
+
+*Please cite any paper, webpage, video, other kind of support material that 
+help in understading the feasibility and relevance of your work.
+List all the references in the last Section of this document.*
+
+----------
+
+
+Data collection \& source(s) 
+----------
+*Provide a detailed update on the data collection status*
+
+\emph{In particular, describe the content of the \underline{pilot dataset} you collected and \underline{uploaded} together with this report. Tell me how are you planning to use these data to achieve the goal(s) highlighted in the previous section. Tell me also if you think the final dataset will differ from this pilot and how/why they may differ.}
+
+\emph{In case you did \underline{not} uploaded the pilot dataset, tell me why, and when are you planning to do it.}
+
+----------
+
+
+Models \& Methods / \underline{update}
+----------
+**ONLY IF** there are significant changes from the 1st milestone, *tell me what type of statistical/data analysis tools do you feel will be relevant?*
+*Explain briefly why.*
+
+----------
+
+
+Software/Hardware Toolkit / \underline{update}
+----------
+**ONLY IF** there are significant changes from the 1st milestone *tell me something about the software, programming language(s), package(s), module(s), framework(s) you're planning to use and why.*
+
+*In particular, tell me if you are planning at least to give [AWS](https://aws.amazon.com/it/) a try.*
+
+----------
+
+
+Problems so far...
+----------
+*List the main problems (if any) you encountered up to this point, possible solutions and foreseeable other problems you may encounter in the near profect-*
+
+
+
+Project Timeline / \underline{update}
+----------
+*Provide an updated -- and possibly realistic! -- timeline for your project.*
+
+----------
+
+
+References / \underline{update}
+----------
+*List any additional (if any) references cited in the previous sections.*
+
+----------
