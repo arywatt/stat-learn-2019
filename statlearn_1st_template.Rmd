@@ -2,12 +2,18 @@
 title: "Statistical Learning Project"
 author: "Group 20, Yao Wateba Appeti, Nicolò Petrungaro, Quentin Carton"
 date: "28/03/2019"
+<<<<<<< HEAD
+output:
+  word_document: default
+  pdf_document: default
+=======
 output: pdf_document
 urlcolor: magenta
 linkcolor: cyan
 geometry: margin=1.25cm
 fontsize: 12pt
 bibliography : biblio.bib
+>>>>>>> 773641eb581ccd82d4ee21c00cf56b6f4279d3d3
 header-includes:
 - \usepackage{bbold}
 - \usepackage{mdframed, xcolor}
@@ -34,6 +40,10 @@ header-includes:
 - \newcommand{\lightgray}{\textcolor[rgb]{.8,.8,.8}}
 - \newcommand{\bfun}{\left\{\begin{array}{ll}}
 - \newcommand{\efun}{\end{array}\right.}
+linkcolor: cyan
+geometry: margin=1.25cm
+fontsize: 12pt
+urlcolor: magenta
 ---
 
 
@@ -53,8 +63,6 @@ The goal of our project is to recognize and classify various human activities ba
 
 Main research aim \& framework
 ----------
-*Describe the main goal(s) of your project, why you are interested in it, 
-and how you came up with this idea. If there are also secondary goals, list them too.*
 
 The goal of our project is to identify the main differences beetwen some of various activities perfomed by humans in their daily life;
 so we wil have to extract the main features defining theese activities and build a model to classify them. The final goal could be to using the obtained models to understand how people spend their days, and evaluate the level of sedententary and in a more general way their activities. Another important goal of this project is that it can help making recommendations based on activity level of people 
