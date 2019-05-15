@@ -38,27 +38,11 @@ header-includes:
 
 Research Title
 ----------
-*Title for your research project.*
+Human activity recognition using smartphone's motion sensors.
 
 ----------
 
 
-Abstract / \underline{update}
-----------
-**ONLY IF** there are significant changes from the 1st milestone, provide a *short overview of the project.*
-
-----------
-
-
-Main research aim \& framework / \underline{update}
-----------
-**ONLY IF** there are significant changes from the 1st milestone, *describe the main goal(s) of your project, why you are interested in it, and how you came up with this idea. If there are also secondary goals, list them too.*
-
-*Please cite any paper, webpage, video, other kind of support material that 
-help in understading the feasibility and relevance of your work.
-List all the references in the last Section of this document.*
-
-----------
 
 
 Data collection \& source(s) 
@@ -102,8 +86,4 @@ Project Timeline / \underline{update}
 ----------
 
 
-References / \underline{update}
-----------
-*List any additional (if any) references cited in the previous sections.*
 
-----------
