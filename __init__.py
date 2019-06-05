@@ -1,21 +1,30 @@
 from . import dataset
+from . import constants
+
+X_train,y_train,X_test,y_test = dataset.load_data()
+
+# SelectLabels to use for analysis
+#labels
+LABELS = [constants.WALKING,
+          constants.LAYING,
+          constants.RUNNING,
+          constants.SITTING,
+          constants.WALKING_DOWNSTAIRS,
+          constants.WALKING_UPSTAIRS
+          ]
+
+filename = [
+    {'Laying': constants.LAYING},
+    {'Running_1': constants.RUNNING},
+    {'Running_2': constants.RUNNING},
+    {'Sitting': constants.SITTING},
+    {'Stairs_down_1': constants.WALKING_DOWNSTAIRS},
+    {'Stairs_down_2': constants.WALKING_DOWNSTAIRS},
+    {'Stairs_up_1': constants.WALKING_UPSTAIRS},
+    {'Stairs_up_3': constants.WALKING_UPSTAIRS},
+    {'Stairs_up_4': constants.WALKING_UPSTAIRS},
+    {'Walking': constants.WALKING},
+    {'Walking_2': constants.WALKING}
+]
 
 
- 
-
-
- # Define Labels to use for analysis
-'''
-1 WALKING           
-2 WALKING_UPSTAIRS  
-3 WALKING_DOWNSTAIRS
-4 SITTING           
-5 STANDING          
-6 LAYING            
-7 STAND_TO_SIT      
-8 SIT_TO_STAND      
-9 SIT_TO_LIE        
-10 LIE_TO_SIT        
-11 STAND_TO_LIE      
-12 LIE_TO_STAND 
-'''
