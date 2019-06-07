@@ -1,6 +1,6 @@
 import numpy as np 
 import pandas as pd
-from . import constants
+import constants
 
 _DATAFOLDER = 'HAPT Data Set/'
 
@@ -15,7 +15,7 @@ def load_data():
     #Load test data
     X_test = pd.read_csv(_DATAFOLDER+'Test/X_test.txt',sep=' ')
     y_test = pd.read_csv(_DATAFOLDER+'Test/y_test.txt')
-    return X_train,y_train,X_test,y_test
+    return X_train.values, y_train.values, X_test.values, y_test.values
 
 
 
@@ -29,8 +29,8 @@ def load_data():
 
 def extract_data(X,Y,labels):
     sh = X.shape
-    X = np.array(X).reshape(X.shape)
-    Y = np.array(Y).reshape(Y.shape)
+    #X = np.array(X).reshape(X.shape)
+    #Y = np.array(Y).reshape(Y.shape)
     # From Y extract only the data corresponding to labels chosen 
     # First get each each label's line index
     indexes = [x for  x in range(len(Y)) if Y[x][0] in set(labels)]
