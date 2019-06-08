@@ -1,5 +1,6 @@
 import dataset
 import constants
+from keras.models import Model,model_from_json,save_model,load_model
 from my_models import SVM_Model as SVM, NN_Model as NN
 
 
@@ -43,10 +44,22 @@ filename = [
 
 ##  1- Using Support Vector Machines
 #SVM.base_model(X_train, y_train, X_test, y_test)
-
+#SVM.search_best(X_train, y_train)
 
 # 2- Using Neural Network
-NN.base_model(X_train, y_train, X_test, y_test)
+
+#'''
+
+model = NN.base_model()
+NN.train_model(model, X_train, y_train)
+
+trained_model = load_model(NN.MODEL_PATH)
+NN.test_model(trained_model, X_test, y_test)
+
+#'''
+
+
+
 
 
 ### Selecting data to work on
