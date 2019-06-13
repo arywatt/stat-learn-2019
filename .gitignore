@@ -2,4 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
-HAPT\ Data\ Set/*
+ data/output_data/*
+ data/hapt_dataset/*
+ data/experiments_rawdata/*
+ data/experiments_cleaned_dataset/*
+

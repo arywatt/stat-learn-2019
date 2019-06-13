@@ -1,11 +1,24 @@
 import dataset
 import constants
 from keras.models import Model,model_from_json,save_model,load_model
-from my_models import SVM_Model as SVM, NN_Model as NN
+from models import SVM_Model as SVM, NN_Model as NN
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
+import numpy as np
 
 
-#Load provided data
-X_train, y_train, X_test, y_test = dataset.load_data()
+
+#Load data
+# We can load hapt_data
+
+# uncomment line below  to use it
+#X_train, y_train, X_test, y_test = dataset.load_hapt_data()
+
+
+# or load our personal data
+
+X, y = dataset.load_data()
+X_train, X_test, y_train, y_test = dataset.split_data(X, y, level=0.2)
 
 
 # Define Labels to use for analysis
@@ -17,63 +30,50 @@ LABELS = [constants.WALKING,
           constants.WALKING_UPSTAIRS
           ]
 
-filename = [
-    {'Laying': constants.LAYING},
-    {'Running_1': constants.RUNNING},
-    {'Running_2': constants.RUNNING},
-
-    {'Sitting': constants.SITTING},
-    {'Stairs_down_1': constants.WALKING_DOWNSTAIRS},
-    {'Stairs_down_2': constants.WALKING_DOWNSTAIRS},
-    {'Stairs_up_1': constants.WALKING_UPSTAIRS},
-    {'Stairs_up_3': constants.WALKING_UPSTAIRS},
-    {'Stairs_up_4': constants.WALKING_UPSTAIRS},
-    {'Walking': constants.WALKING},
-    {'Walking_2': constants.WALKING}
-]
-
-
-
-
-
-################################     Working on provided  dataSet    ###################################################################
-
-
-#### Lets try to use all the dataset to create a model
-
 
 ##  1- Using Support Vector Machines
-#SVM.base_model(X_train, y_train, X_test, y_test)
-#SVM.search_best(X_train, y_train)
+
+## first we create a base model usin SVM
+SVM.base_model(X_train, y_train, X_test, y_test)
+
+# then we perform a model tuning to find the best params for
+# our base model
+# takes a lot of time
+
+#best_params, best_score = SVM.search_best_params(X_train, y_train)
+
+
+# best param found
+best_params = {
+    'gamma': 0.1,
+    'decision_function_shape': 'ovo',
+    'C': 0.001,
+    'kernel': 'poly'
+}
+
+## We test the best model obtained
+SVM.best_model(X_train, y_train, X_test, y_test, best_params)
+
+
 
 # 2- Using Neural Network
 
-#'''
+# We first encode the label
 
-model = NN.base_model()
-NN.train_model(model, X_train, y_train)
+encoder = OneHotEncoder(sparse=False,categories='auto')
+encoder.fit(np.array(y).reshape(len(y), 1))
 
-trained_model = load_model(NN.MODEL_PATH)
+y_train = encoder.transform(y_train.reshape(len(y_train), 1))
+y_test = encoder.transform(y_test.reshape(len(y_test), 1))
+
+#print(y_train.shape)
+
+
+units = y_train.shape[1]
+
+model = NN.base_model(units)
+trained_model = NN.train_model(model, X_train, y_train)
 NN.test_model(trained_model, X_test, y_test)
-
-#'''
-
-
-
-
-
-### Selecting data to work on
-#X_train_selected, y_train_selected = dataset.extract_data(X_train, y_test, LABELS)
-#X_test_selected, y_test_selected = dataset.extract_data(X_test, y_test, LABELS)
-
-
-#SVM.launch_model(X_train_selected,y_train_selected,X_test_selected,y_test_selected)
-#NN_Model.launch_model(X_train_selected,y_train_selected,X_test_selected,y_test_selected)
-
-
-
-
-############################################################  WORKING ON PERSONAL DATASET    ########################################
 
 
 

@@ -18,10 +18,23 @@ RUNNING = 13
 
 
 
+DATAFOLDER = 'data/'
+HAPT_DATASET_FOLDER = DATAFOLDER +' hapt_dataset/'
+PROJECT_DATASET = DATAFOLDER + 'project_dataset/'
+EXPERIMENTS_RAWDATA = DATAFOLDER +'expriments_rawdata/'
+EXPERIMENTS_CLEANED_DATA = DATAFOLDER +'expriments_cleaned_dataset/'
+OUTPUT_DATA = DATAFOLDER + 'output_data/'
+
+
 ##  FILENAMES
 
-MODEL_BEST_WEIGHTS_PATH ='./data_out/nn_model/model_best.h5'
-MODEL_SUMMARY_PATH = './data_out/nn_model/modelsummary.txt'
-MODEL_LOG_PATH = './data_out/nn_model/training.log'
-MODEL_JSON_PATH ='./data_out/nn_model/model.json'
-MODEL_WEIGHTS_PATH ='./data_out/nn_model/model.h5'
+MODEL_BEST_WEIGHTS_PATH ='model_best_weights.h5'
+MODEL_SUMMARY_PATH = 'modelsummary.txt'
+MODEL_LOG_PATH = 'training.log'
+MODEL_JSON_PATH ='model.json'
+MODEL_WEIGHTS_PATH ='model_weights.h5'
+MODEL_PATH ='model.h5'
+
+
+BASIC_DATASET = PROJECT_DATASET+'dataset.csv'
+FEATURED_DATASET = PROJECT_DATASET + 'featured_dataset.csv'
