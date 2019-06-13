@@ -4,6 +4,5 @@
 .Ruserdata
  data/output_data/*
  data/hapt_dataset/*
- data/experiments_rawdata/*
  data/experiments_cleaned_dataset/*
 

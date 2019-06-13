@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from constants import *
 from sklearn.model_selection import train_test_split
+import os
 
 files = [
     {'Laying':  LAYING},
@@ -26,6 +27,7 @@ def load_hapt_data():
     X_train = pd.read_csv(HAPT_DATASET_FOLDER+'Train/X_train.txt',sep=' ',header=None)
     y_train = pd.read_csv(HAPT_DATASET_FOLDER+'Train/y_train.txt',sep=' ',header=None)
 
+    X_train.info()
     # Load test data
     X_test = pd.read_csv(HAPT_DATASET_FOLDER+'Test/X_test.txt',sep=' ',header=None)
     y_test = pd.read_csv(HAPT_DATASET_FOLDER+'Test/y_test.txt',sep=' ',header=None)
@@ -37,22 +39,16 @@ def load_hapt_data():
 # to obtain the final dataset to work on 
 def load_data():
     # Load train data
-    data = pd.read_csv(BASIC_DATASET, sep=',')
-
-    data.info(verbose=True)
-    print(data.describe())
-    print(data.values.shape)
-
-    exp_id = data['EXP_ID'].max(0)
-    print(exp_id.max(0))
+    data = pd.read_csv(BASIC_DATASET, sep=',', names=['timestamp', 'tAccX', 'tAccY', 'tAccZ', 'EXP_ID', 'Label'])
+    exp_total_number  = data['EXP_ID'].max(0)
 
     features = []
-    for ID in range(data['EXP_ID'].max(0)):
+    for ID in range(exp_total_number+1):
         condition = data['EXP_ID'] == ID
 
         # retrieve experiment data
         experiment_data = data[condition].loc[:, ['tAccX', 'tAccY', 'tAccZ', 'Label']]
-        
+
         # create features fro data
         features.append(create_features(experiment_data))
     data = np.array(features)
@@ -142,12 +138,12 @@ def clean_record(filename, label):
     buffer = ""
     for line in ff.readlines()[1:]:
 
-        tab = line.strip().split(',')
+        tab = line.strip().split(',')[:-1]
         if '' in tab:  ## We avoid lines with missing values
             continue
         else:
             # line.append(','+label)
-            buffer = buffer + ','.join(line.split(','))
+            buffer = buffer + ','.join(tab) + '\n'
     ff2 = open(EXPERIMENTS_CLEANED_DATA + filename + '.csv', 'w+')
     ff2.write(buffer)
     ff2.close
@@ -170,10 +166,11 @@ def process_record(filename, label,  exp_id, numbers_of_records):
         count = count + 1
         if count % numbers_of_records == 0:
              exp_id += 1
-        line = line.strip() + ',' + str( exp_id) + ',' + str(label) + '\n'
+        line = line.strip() + ',' + str( exp_id) + ',' + str(label) + ' \n'
         buffer = buffer + line
 
     ff2 = open(BASIC_DATASET, 'a')
+    #ff2.write('timestamp,tAccX,tAccY,tAccZ,EXP_ID,Label \n')
     ff2.write(buffer)
     ff2.close
     ff.close
@@ -190,10 +187,18 @@ def process_record(filename, label,  exp_id, numbers_of_records):
 
 
 def process_all_records(batch=50, ID= 0, filelist=files):
+
+    # Delete old dataset if exist
+    if os.path.isfile(BASIC_DATASET):
+        os.remove(BASIC_DATASET)
+
+    for elmt in filelist:
+        for filename, label in elmt.items():
+            clean_record(filename, label)
+
+
     for elmt in filelist:
         for filename, label in elmt.items():
             ID = process_record(filename, label, ID, 50)
-
-
 
 

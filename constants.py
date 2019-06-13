@@ -19,10 +19,10 @@ RUNNING = 13
 
 
 DATAFOLDER = 'data/'
-HAPT_DATASET_FOLDER = DATAFOLDER +' hapt_dataset/'
+HAPT_DATASET_FOLDER = DATAFOLDER +'hapt_dataset/'
 PROJECT_DATASET = DATAFOLDER + 'project_dataset/'
-EXPERIMENTS_RAWDATA = DATAFOLDER +'expriments_rawdata/'
-EXPERIMENTS_CLEANED_DATA = DATAFOLDER +'expriments_cleaned_dataset/'
+EXPERIMENTS_RAWDATA = DATAFOLDER +'experiments_rawdata/'
+EXPERIMENTS_CLEANED_DATA = DATAFOLDER +'experiments_cleaned_dataset/'
 OUTPUT_DATA = DATAFOLDER + 'output_data/'
 
 
@@ -36,5 +36,5 @@ MODEL_WEIGHTS_PATH ='model_weights.h5'
 MODEL_PATH ='model.h5'
 
 
-BASIC_DATASET = PROJECT_DATASET+'dataset.csv'
+BASIC_DATASET = PROJECT_DATASET+'basic_dataset.csv'
 FEATURED_DATASET = PROJECT_DATASET + 'featured_dataset.csv'

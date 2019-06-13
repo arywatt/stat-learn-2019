@@ -85,8 +85,7 @@ def train_model(model, X_train, Y_train):
     # print(one_hot_train_labels.shape)
     # for xx in one_hot_train_labels:
     #     print(xx)
-    print(Y_train.shape)
-    print(Y_train)
+
 
     # Train the model, iterating on the data in batches of 32 samples
     history = model.fit(X_train,

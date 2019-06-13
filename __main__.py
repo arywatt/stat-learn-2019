@@ -15,7 +15,12 @@ import numpy as np
 #X_train, y_train, X_test, y_test = dataset.load_hapt_data()
 
 
+
+
 # or load our personal data
+
+# first we process the data
+dataset.process_all_records()
 
 X, y = dataset.load_data()
 X_train, X_test, y_train, y_test = dataset.split_data(X, y, level=0.2)
@@ -48,16 +53,17 @@ best_params = {
     'gamma': 0.1,
     'decision_function_shape': 'ovo',
     'C': 0.001,
-    'kernel': 'poly'
+    'kernel': 'rbf'
 }
 
 ## We test the best model obtained
+print('running svm best model ')
 SVM.best_model(X_train, y_train, X_test, y_test, best_params)
 
 
 
 # 2- Using Neural Network
-
+print('Runnin NN')
 # We first encode the label
 
 encoder = OneHotEncoder(sparse=False,categories='auto')
@@ -66,8 +72,7 @@ encoder.fit(np.array(y).reshape(len(y), 1))
 y_train = encoder.transform(y_train.reshape(len(y_train), 1))
 y_test = encoder.transform(y_test.reshape(len(y_test), 1))
 
-#print(y_train.shape)
-
+print('encoding done')
 
 units = y_train.shape[1]
 
