@@ -1,7 +1,10 @@
 import dataset
 import constants
 from keras.models import Model,model_from_json,save_model,load_model
-from models import SVM_Model as SVM, NN_Model as NN
+from models import svm, neural_network as NN
+from models import random_forest
+from models import knn
+from models import decision_tree
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 import numpy as np
@@ -20,10 +23,10 @@ import numpy as np
 # or load our personal data
 
 # first we process the data
-dataset.process_all_records()
+#dataset.process_all_records()
 
 X, y = dataset.load_data()
-X_train, X_test, y_train, y_test = dataset.split_data(X, y, level=0.2)
+X_train, X_test, y_train, y_test = dataset.split_data(X, y, level=0.33,seed=68254)
 
 
 # Define Labels to use for analysis
@@ -39,7 +42,10 @@ LABELS = [constants.WALKING,
 ##  1- Using Support Vector Machines
 
 ## first we create a base model usin SVM
-SVM.base_model(X_train, y_train, X_test, y_test)
+svm.base_model(X_train, y_train, X_test, y_test)
+random_forest.base_model(X_train, y_train, X_test, y_test)
+knn.base_model(X_train, y_train, X_test, y_test)
+decision_tree.base_model(X_train, y_train, X_test, y_test)
 
 # then we perform a model tuning to find the best params for
 # our base model
@@ -49,16 +55,16 @@ SVM.base_model(X_train, y_train, X_test, y_test)
 
 
 # best param found
-best_params = {
-    'gamma': 0.1,
-    'decision_function_shape': 'ovo',
-    'C': 0.001,
-    'kernel': 'rbf'
-}
+# best_params = {
+#     'gamma': 0.1,
+#     'decision_function_shape': 'ovo',
+#     'C': 0.001,
+#     'kernel': 'rbf'
+# }
 
 ## We test the best model obtained
-print('running svm best model ')
-SVM.best_model(X_train, y_train, X_test, y_test, best_params)
+#print('running svm best model ')
+#SVM.best_model(X_train, y_train, X_test, y_test, best_params)
 
 
 
@@ -67,7 +73,9 @@ print('Runnin NN')
 # We first encode the label
 
 encoder = OneHotEncoder(sparse=False,categories='auto')
-encoder.fit(np.array(y).reshape(len(y), 1))
+ar = np.array(y).reshape(len(y), 1)
+encoder.fit(ar)
+
 
 y_train = encoder.transform(y_train.reshape(len(y_train), 1))
 y_test = encoder.transform(y_test.reshape(len(y_test), 1))

@@ -51,6 +51,11 @@ def train_callbacks():
                                    filepath=MODEL_BEST_WEIGHTS_PATH,
                                    verbose=1, save_best_only=True,
                                    save_weights_only=True, )
+
+    # checkpoint_name = OUTPUT_DATA + 'weights-best.hdf5'
+    # checkpoint = ModelCheckpoint(checkpoint_name, monitor='val_loss', verbose=1, save_best_only=True, mode='auto')
+    # callbacks_list = [checkpoint]
+    #
     history = LossHistory()
 
     # logger in csv file
@@ -72,21 +77,31 @@ def base_model(units):
 
     return model
 
+def advanced_model(input_dim):
+    NN_model = Sequential()
 
-def custom_model():
-    model = None
+    # The Input Layer :
+    NN_model.add(Dense(128, kernel_initializer='normal', input_dim=input_dim, activation='relu'))
 
-    return model
+    # The Hidden Layers :
+    NN_model.add(Dense(256, kernel_initializer='normal', activation='relu'))
+    NN_model.add(Dense(256, kernel_initializer='normal', activation='relu'))
+    NN_model.add(Dense(256, kernel_initializer='normal', activation='relu'))
+
+    # The Output Layer :
+    NN_model.add(Dense(1, kernel_initializer='normal', activation='linear'))
+
+    # Compile the network :
+    NN_model.compile(optimizer='rmsprop',
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'],
+                  callbacks=train_callbacks())
+    NN_model.summary()
+
+    return NN_model
 
 
 def train_model(model, X_train, Y_train):
-    # Convert labels to categorical one-hot encoding
-    # one_hot_train_labels = np_utils.to_categorical(Y_train)
-    # print(one_hot_train_labels.shape)
-    # for xx in one_hot_train_labels:
-    #     print(xx)
-
-
     # Train the model, iterating on the data in batches of 32 samples
     history = model.fit(X_train,
                         Y_train,

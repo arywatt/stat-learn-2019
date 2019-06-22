@@ -25,7 +25,7 @@ Delay is on March 28
 │   └── SVM_Model.py
 ├── README.md
 
-
+</pre>
 
 The data folder contains all the datas 
 Our project dataset is located in #project_dataset 
@@ -42,10 +42,6 @@ SVM_Model.py defines an svm model
 NN_model.py define and neural network model 
 
 
-
-
-
-</pre>
 
 
 
