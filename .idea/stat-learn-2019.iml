@@ -5,7 +5,6 @@
       <excludeFolder url="file://$MODULE_DIR$/data/experiments_cleaned_dataset" />
       <excludeFolder url="file://$MODULE_DIR$/data/hapt_dataset" />
       <excludeFolder url="file://$MODULE_DIR$/data/output_data" />
-      <excludeFolder url="file://$MODULE_DIR$/data/project_dataset" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
