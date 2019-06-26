@@ -26,7 +26,7 @@ import numpy as np
 #dataset.process_all_records()
 
 X, y = dataset.load_data()
-X_train, X_test, y_train, y_test = dataset.split_data(X, y, level=0.33,seed=68254)
+X_train, X_test, y_train, y_test = dataset.split_data(X, y, level=0.33, seed=68254)
 
 
 # Define Labels to use for analysis

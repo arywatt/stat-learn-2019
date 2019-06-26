@@ -10,7 +10,11 @@ files = [
     {'Laying':  LAYING},
     {'Running_1':  RUNNING},
     {'Running_2':  RUNNING},
-
+    {'Laying1': LAYING },
+    {'Running':RUNNING },
+    {'Sitting_1': SITTING},
+    {'StairsDown': WALKING_DOWNSTAIRS},
+    {'Stairsup':WALKING_UPSTAIRS },
     {'Sitting':  SITTING},
     {'Stairs_down_1':  WALKING_DOWNSTAIRS},
     {'Stairs_down_2':  WALKING_DOWNSTAIRS},
@@ -18,6 +22,7 @@ files = [
     {'Stairs_up_3':  WALKING_UPSTAIRS},
     {'Stairs_up_4':  WALKING_UPSTAIRS},
     {'Walking':  WALKING},
+    {'Walking_1': WALKING},
     {'Walking_2':  WALKING}
 ]
 
@@ -39,7 +44,7 @@ def load_hapt_data():
 # This function loads the raw dataset
 # and process it
 # to obtain the final dataset to work on 
-def load_data():
+def create_data():
     # Load train data
     data = pd.read_csv(BASIC_DATASET, sep=',', names=['timestamp', 'tAccX', 'tAccY', 'tAccZ', 'EXP_ID', 'Label'])
     exp_total_number  = data['EXP_ID'].max(0)
@@ -63,10 +68,6 @@ def load_data():
 
     final_dataset = pd.DataFrame.from_dict(features_dict)
     final_dataset.to_csv('{}'.format(FEATURED_DATASET), index=False)
-    return final_dataset.values[:, :-1], final_dataset.values[:, -1]
-
-
-
 
 
     # data = np.array(features)
@@ -94,9 +95,7 @@ def create_features(data):
 
     # to store all our features
     experiment_features = []
-    cols = ['tAccX', 'tAccY', 'tAccZ']
 
-    #data = data.loc[:, ['tAccX', 'tAccY', 'tAccZ']]
     # then we also add all the advanced features created
     advanced_features = add_advanced_features(data)
     if len(advanced_features)!= 0:
@@ -114,7 +113,8 @@ def create_features(data):
 
 def add_advanced_features(data):
     advanced_features = []
-    features_creations_functions = []
+
+
     for function in FEATURE_FUNCTIONS:
         advanced_features.extend(function(data))
 
@@ -162,16 +162,16 @@ def clean_record(filename, label):
 # numbers_of_records : Number  of records in each experiments
 
 
-def process_record(filename, label,  exp_id, numbers_of_records):
-    ff = open(EXPERIMENTS_CLEANED_DATA + filename + '.csv', 'r')    # we open and read the file
+def process_record(filename, label, exp_id, numbers_of_records):
+    ff = open(EXPERIMENTS_CLEANED_DATA + filename + '.csv', 'r')  # we open and read the file
     lines = ff.readlines()[1:]
     buffer = ""
     count = 0
     for line in lines:
         count = count + 1
         if count % numbers_of_records == 0:
-             exp_id += 1
-        line = line.strip() + ',' + str( exp_id) + ',' + str(label) + ' \n'
+            exp_id += 1
+        line = line.strip() + ',' + str(exp_id) + ',' + str(label) + ' \n'
         buffer = buffer + line
 
     ff2 = open(BASIC_DATASET, 'a')
@@ -179,12 +179,15 @@ def process_record(filename, label,  exp_id, numbers_of_records):
     ff2.close
     # ff.close
 
-    # df = pd.read_csv(EXPERIMENTS_CLEANED_DATA + filename,index_col='timestamp')
-    # for row in df.index
+    # df = pd.read_csv(EXPERIMENTS_CLEANED_DATA + filename, index_col='timestamp')
+    # n = len(df.index.values)
+    # experiment_column = [str(exp_id) for _ in range(len(df.index.values))]
+    # label_column = [str(label) for _ in range(len(df.index.values))]
 
     return exp_id
 
-# Once we put all the experiment files in the correct folder 
+
+# Once we put all the experiment files in the correct folder
 # we update the FILES variable to add all the file name and experiment type
 # then we call this method
 # it processes all the files, cleaning them, creating the basic dataset 
@@ -200,6 +203,9 @@ def process_all_records(batch=50, ID= 0, filelist=files):
     if os.path.isfile(BASIC_DATASET):
         os.remove(BASIC_DATASET)
 
+    if os.path.isfile(FEATURED_DATASET):
+        os.remove(FEATURED_DATASET)
+
     for elmt in filelist:
         for filename, label in elmt.items():
             clean_record(filename, label)
@@ -207,7 +213,15 @@ def process_all_records(batch=50, ID= 0, filelist=files):
 
     for elmt in filelist:
         for filename, label in elmt.items():
-            ID = process_record(filename, label, ID, 75)
+            ID = process_record(filename, label, ID, batch)
+
+
+
+
+def load_data():
+    final_dataset = pd.read_csv(FEATURED_DATASET)
+    return final_dataset.values[:, :-1], final_dataset.values[:, -1]
+
 
 process_all_records()
-load_data()
+create_data()
