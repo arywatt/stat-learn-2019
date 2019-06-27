@@ -6,6 +6,7 @@ from datetime import datetime
 from joblib import dump, load
 import numpy as np
 import os
+import time
 
 
 # BEST_PARAMS
@@ -15,16 +16,20 @@ def base_model(X_train, Y_train, X_test, Y_test):
     # Instantiate classifier
     clf = SVC(gamma='auto')
 
+
     # fit the data
+    start = time.time()
     clf.fit(X_train, Y_train)
+    end = time.time() - start
 
     # Predict the test data
     pred = clf.predict(X_test)
 
     # Measure accuracy
     score = accuracy_score(Y_test, pred)
-    print("Score :", score)
+    print("MODEL    :  SVM    Time:   {}  Score:  {}".format(end, score))
 
+    return score, end
 
 def search_best_params(X, y):
     print(X.shape)

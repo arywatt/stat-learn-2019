@@ -24,9 +24,10 @@ import numpy as np
 
 # first we process the data
 #dataset.process_all_records()
+#dataset.create_data()
 
 X, y = dataset.load_data()
-X_train, X_test, y_train, y_test = dataset.split_data(X, y, level=0.33, seed=68254)
+X_train, X_test, y_train, y_test = dataset.split_data(X, y, level=0.33, seed=33000)
 
 
 # Define Labels to use for analysis
@@ -42,10 +43,10 @@ LABELS = [constants.WALKING,
 ##  1- Using Support Vector Machines
 
 ## first we create a base model usin SVM
-svm.base_model(X_train, y_train, X_test, y_test)
-random_forest.base_model(X_train, y_train, X_test, y_test)
-knn.base_model(X_train, y_train, X_test, y_test)
-decision_tree.base_model(X_train, y_train, X_test, y_test)
+
+models = [svm.base_model, random_forest.base_model,knn.base_model,decision_tree.base_model]
+for model in models:
+    model(X_train,y_train,X_test,y_test)
 
 # then we perform a model tuning to find the best params for
 # our base model
@@ -69,25 +70,25 @@ decision_tree.base_model(X_train, y_train, X_test, y_test)
 
 
 # 2- Using Neural Network
-print('Runnin NN')
-# We first encode the label
-
-encoder = OneHotEncoder(sparse=False,categories='auto')
-ar = np.array(y).reshape(len(y), 1)
-encoder.fit(ar)
-
-
-y_train = encoder.transform(y_train.reshape(len(y_train), 1))
-y_test = encoder.transform(y_test.reshape(len(y_test), 1))
-
-print('encoding done')
-
-units = y_train.shape[1]
-
-model = NN.base_model(units)
-trained_model = NN.train_model(model, X_train, y_train)
-NN.test_model(trained_model, X_test, y_test)
-
+# print('Runnin NN')
+# # We first encode the label
+#
+# encoder = OneHotEncoder(sparse=False,categories='auto')
+# ar = np.array(y).reshape(len(y), 1)
+# encoder.fit(ar)
+#
+#
+# y_train = encoder.transform(y_train.reshape(len(y_train), 1))
+# y_test = encoder.transform(y_test.reshape(len(y_test), 1))
+#
+# print('encoding done')
+#
+# units = y_train.shape[1]
+#
+# model = NN.base_model(units)
+# trained_model = NN.train_model(model, X_train, y_train)
+# NN.test_model(trained_model, X_test, y_test)
+#
 
 
 
