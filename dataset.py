@@ -218,10 +218,9 @@ def process_all_records(batch=50, ID= 0, filelist=files):
 
 
 
+
+
 def load_data():
     final_dataset = pd.read_csv(FEATURED_DATASET)
     return final_dataset.values[:, :-1], final_dataset.values[:, -1]
 
-
-process_all_records()
-create_data()
