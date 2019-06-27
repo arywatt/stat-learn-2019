@@ -26,7 +26,7 @@ def base_model(X_train, Y_train, X_test, Y_test):
 
     # Measure accuracy
     score = accuracy_score(Y_test, pred)
-    print("MODEL    :  KNN    Time:   {}  Score:  {}".format(end,score))
+    print("KNN          :  Time:   {}  Score:  {}".format(end,score))
 
     return score, end
 

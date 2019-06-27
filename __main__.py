@@ -1,7 +1,7 @@
 import dataset
 import constants
 from keras.models import Model,model_from_json,save_model,load_model
-from models import svm, neural_network as NN
+from models import svm #neural_network as NN
 from models import random_forest
 from models import knn
 from models import decision_tree

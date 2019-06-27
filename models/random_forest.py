@@ -26,7 +26,7 @@ def base_model(X_train, Y_train, X_test, Y_test):
 
     # Measure accuracy
     score = accuracy_score(Y_test, pred)
-    print("MODEL    :  RANDOM FOREST   Time:   {}  Score:  {}".format(end, score))
+    print("RANDOM FOREST :  Time:   {}  Score:  {}".format(end, score))
 #
 #
 # def search_best_params(X, y):
