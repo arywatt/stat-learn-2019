@@ -149,9 +149,24 @@ def test_model(model, X_test, Y_test):
     print("Testing Accuracy:  {:.4f}".format(accuracy))
 
 
-def run(X_train, Y_train, X_test, Y_test, model):
-    train_model(X_train, Y_train, model)
-    test_model(X_test, Y_train)
+def run(X_train, Y_train, X_test, Y_test,model):
+    # Train the model, iterating on the data in batches of 32 samples
+    history = model.fit(X_train,
+                        Y_train,
+                        epochs=100,
+                        batch_size=32,
+                        validation_data=(X_test, Y_test),
+                        verbose=False
+                        )
+
+    model.summary()
+    loss, accuracy = model.evaluate(X_train, Y_train, verbose=False)
+    print("Training Accuracy: {:.4f}".format(accuracy))
+    loss, accuracy = model.evaluate(X_test, Y_test, verbose=False)
+    print("Testing Accuracy:  {:.4f}".format(accuracy))
+
+    # Save the model
+    save_model(model)
 
 
 def plot_history(history):

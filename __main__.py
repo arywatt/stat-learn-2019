@@ -1,13 +1,14 @@
 import dataset
 import constants
 from keras.models import Model,model_from_json,save_model,load_model
-from models import svm #neural_network as NN
+from models import svm ,neural_network as NN
 from models import random_forest
 from models import knn
 from models import decision_tree
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 import numpy as np
+import time
 
 
 
@@ -70,25 +71,28 @@ for model in models:
 
 
 # 2- Using Neural Network
-# print('Runnin NN')
-# # We first encode the label
-#
-# encoder = OneHotEncoder(sparse=False,categories='auto')
-# ar = np.array(y).reshape(len(y), 1)
-# encoder.fit(ar)
-#
-#
-# y_train = encoder.transform(y_train.reshape(len(y_train), 1))
-# y_test = encoder.transform(y_test.reshape(len(y_test), 1))
-#
-# print('encoding done')
-#
-# units = y_train.shape[1]
-#
-# model = NN.base_model(units)
-# trained_model = NN.train_model(model, X_train, y_train)
-# NN.test_model(trained_model, X_test, y_test)
-#
+print('Runnin NN')
+# We first encode the label
+
+encoder = OneHotEncoder(sparse=False,categories='auto')
+ar = np.array(y).reshape(len(y), 1)
+encoder.fit(ar)
+
+
+y_train = encoder.transform(y_train.reshape(len(y_train), 1))
+y_test = encoder.transform(y_test.reshape(len(y_test), 1))
+
+print('encoding done')
+
+units = y_train.shape[1]
+
+model = NN.base_model(units)
+start = time.time()
+#trained_model = NN.train_model(model, X_train, y_train)
+NN.run(X_train,y_train,X_test, y_test,model)
+end = time.time() - start
+#NN.test_model(trained_model, X_test, y_test)
+
 
 
 

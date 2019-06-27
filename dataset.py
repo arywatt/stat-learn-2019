@@ -224,3 +224,4 @@ def load_data():
     final_dataset = pd.read_csv(FEATURED_DATASET)
     return final_dataset.values[:, :-1], final_dataset.values[:, -1]
 
+#create_data()

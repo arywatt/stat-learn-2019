@@ -14,7 +14,7 @@ import time
 
 def base_model(X_train, Y_train, X_test, Y_test):
     # Instantiate classifier
-    clf = RandomForestClassifier(n_estimators=100, max_depth=2, random_state=0)
+    clf = RandomForestClassifier(n_estimators=300, max_depth=4, random_state=0)
 
     # fit the data
     start = time.time()

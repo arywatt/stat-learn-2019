@@ -1,8 +1,9 @@
 import numpy as np
 import pandas as pd
-
+from utils import *
 from scipy.fftpack import fft
 from scipy.signal import welch,find_peaks,find_peaks_cwt
+from scipy import signal
 
 import constants
 from sklearn.model_selection import train_test_split
@@ -14,8 +15,9 @@ import os
 from constants import *
 from matplotlib import pyplot as plt
 
-#df = pd.read_csv('running.csv', index_col='timestamp')
-df = pd.read_csv('Stairs_up_5.csv', index_col='timestamp')
+df = pd.read_csv('running.csv', index_col='timestamp')
+#df = pd.read_csv('Walking.csv', index_col='timestamp')
+#df = pd.read_csv('Stairs_up_5.csv', index_col='timestamp')
 # print(df)
 df = df.dropna()
 df.info()
@@ -27,22 +29,25 @@ x = df['AccX']
 y = df['AccY']
 z = df['AccZ']
 
-xx = z
-
-
+xx = y
+#
+# x = x[:150]
+# y  = y[:150]
+# z  = z[:150]
 
 #print(N)
 
 #n = 50
 
 
-total_time = ( np.max(df.index.values) - np.min(df.index.values ) ) // 1000 + 1
+total_time = ( np.max(x.index.values) - np.min(x.index.values ) ) // 1000 + 1
 print(total_time)
 
 t_n = total_time
-N = len(xx)
-T = t_n / N
-f_s = 1 / T
+N = len(x)
+f_s = 17 #1 / T
+T = 1/f_s
+
 
 print(N,f_s,t_n,T)
 
@@ -122,6 +127,8 @@ def get_autocorr_values(y_values, T, N, f_s):
 
 
 
+
+
 # plt.plot(df.index.values, x, linestyle='-', color='red')
 #
 #
@@ -129,8 +136,8 @@ def get_autocorr_values(y_values, T, N, f_s):
 #
 # plt.plot(df.index.values, z, linestyle='-', color='green')
 
-
-ff_values, psd_values = get_fft_values(x, T, N, f_s)
+#
+# ff_values, psd_values = get_fft_values(x, T, N, f_s)
 # plt.plot(ff_values, psd_values, linestyle='-', color='red')
 #
 # ff_values, psd_values = get_fft_values(y, T, N, f_s)
@@ -156,25 +163,56 @@ ff_values, psd_values = get_fft_values(x, T, N, f_s)
 
 
 
-# ff_values, psd_values = get_psd_values(x, T, N, f_s)
-# plt.plot(ff_values, psd_values, linestyle='-', color='red')
-#
-# ff_values, psd_values = get_psd_values(y, T, N, f_s)
-# plt.plot(ff_values, psd_values, linestyle='-', color='blue')
-#
+ff_values, psd_values = get_psd_values(x, T, N, f_s)
+plt.plot(ff_values, psd_values, linestyle='-', color='red')
+
+#ff_values, psd_values = get_psd_values(y, T, N, f_s)
+#plt.plot(ff_values, psd_values, linestyle='-', color='blue')
+
 # ff_values, psd_values = get_psd_values(z, T, N, f_s)
 # plt.plot(ff_values, psd_values, linestyle='-', color='green')
 #
-# print(len(ff_values),len(psd_values))
+#print(ff_values,psd_values)
+
+B,A = signal.butter(3,0.1,output='ba')
+sm_data = signal.filtfilt(B,A,ff_values)
 
 
-# peaks, _ = find_peaks_cwt(xx)
+peaks, _ = find_peaks(psd_values)
+
+print(len(peaks))
+print(peaks)
+vv = psd_values[peaks]
+print(vv)
+print(n_max_indexes(vv,5))
+
 #
-# print(len(peaks))
-# print(peaks)
-# plt.plot(range(0,len(peaks)), xx.values[peaks])
-# plt.show()
-# 
+# print(np.max(vv))
+# print(np.where(vv == max(vv)))
+# plt.plot(range(0,len(peaks)), vv)
+#
+#
+# l = [1,2,3,4,5]
+# ll = [5,4,3,2,1]
+#
+# for a,b in zip(l,ll)  :
+#     print((a,b))
+#
+#
 
-ar = [1,2,3] + [3,2,1]
-print(ar)
+#plt.plot(sm_data,'b')
+# #plt.plot(x.values,'r')
+# print(sm_data)
+#
+# plt.hist(sm_data)
+# print(np.mean(sm_data))
+plt.show()
+
+
+
+
+
+
+
+
+
