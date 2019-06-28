@@ -128,22 +128,22 @@ def get_autocorr_values(y_values, T, N, f_s):
 
 
 
-
-# plt.plot(df.index.values, x, linestyle='-', color='red')
+#
+# plt.plot(df.index.values[:N], x[:N], linestyle='-', color='red')
 #
 #
-# plt.plot(df.index.values, y, linestyle='-', color='blue')
+# plt.plot(df.index.values[:N], y[:N], linestyle='-', color='blue')
 #
-# plt.plot(df.index.values, z, linestyle='-', color='green')
-
+# plt.plot(df.index.values[:N], z[:N], linestyle='-', color='green')
 #
-# ff_values, psd_values = get_fft_values(x, T, N, f_s)
+# N = 75
+# ff_values, psd_values = get_fft_values(x[N:2*N], T, N, f_s)
 # plt.plot(ff_values, psd_values, linestyle='-', color='red')
 #
-# ff_values, psd_values = get_fft_values(y, T, N, f_s)
+# ff_values, psd_values = get_fft_values(y[N:2*N], T, N, f_s)
 # plt.plot(ff_values, psd_values, linestyle='-', color='blue')
 #
-# ff_values, psd_values = get_fft_values(z, T, N, f_s)
+# ff_values, psd_values = get_fft_values(z[N:2*N], T, N, f_s)
 # plt.plot(ff_values, psd_values, linestyle='-', color='green')
 #
 # print(len(ff_values),len(psd_values))
@@ -163,28 +163,28 @@ def get_autocorr_values(y_values, T, N, f_s):
 
 
 
-ff_values, psd_values = get_psd_values(x, T, N, f_s)
+ff_values, psd_values = get_fft_values(x, T, N, f_s)
 plt.plot(ff_values, psd_values, linestyle='-', color='red')
 
-#ff_values, psd_values = get_psd_values(y, T, N, f_s)
-#plt.plot(ff_values, psd_values, linestyle='-', color='blue')
+ff_values, psd_values = get_fft_values(y, T, N, f_s)
+plt.plot(ff_values, psd_values, linestyle='-', color='blue')
 
-# ff_values, psd_values = get_psd_values(z, T, N, f_s)
-# plt.plot(ff_values, psd_values, linestyle='-', color='green')
+ff_values, psd_values = get_fft_values(z, T, N, f_s)
+plt.plot(ff_values, psd_values, linestyle='-', color='green')
 #
 #print(ff_values,psd_values)
 
-B,A = signal.butter(3,0.1,output='ba')
-sm_data = signal.filtfilt(B,A,ff_values)
-
-
-peaks, _ = find_peaks(psd_values)
-
-print(len(peaks))
-print(peaks)
-vv = psd_values[peaks]
-print(vv)
-print(n_max_indexes(vv,5))
+# B,A = signal.butter(3,0.1,output='ba')
+# sm_data = signal.filtfilt(B,A,ff_values)
+#
+#
+# peaks, _ = find_peaks(psd_values)
+#
+# print(len(peaks))
+# print(peaks)
+# vv = psd_values[peaks]
+# print(vv)
+# print(n_max_indexes(vv,5))
 
 #
 # print(np.max(vv))
@@ -206,6 +206,10 @@ print(n_max_indexes(vv,5))
 #
 # plt.hist(sm_data)
 # print(np.mean(sm_data))
+
+plt.title(' Fast Fourier Transform')
+plt.ylabel('Amplitude')
+plt.xlabel('Frequencies')
 plt.show()
 
 

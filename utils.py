@@ -31,12 +31,16 @@ def get_autocorr_values(y_values, T, N, f_s):
 
 def peaks(x,y,n=3):
     indexes, properties = find_peaks(y)
+    #print(indexes)
     x_peaks = x[indexes]
+    #print(x_peaks)
     y_peaks = y[indexes]
+    #print(y_peaks)
 
 
-    ind_max = n_max_indexes(y_peaks, n)
-    print(len(ind_max))
+    ind_max  = n_max_indexes(y_peaks, n)
+
+
     x_peaks_max = x_peaks[ind_max]
     y_peaks_max = y_peaks[ind_max]
     return x_peaks_max, y_peaks_max

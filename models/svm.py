@@ -28,12 +28,10 @@ def base_model(X_train, Y_train, X_test, Y_test):
     # Measure accuracy
     score = accuracy_score(Y_test, pred)
     print("SVM          :    Time:   {}  Score:  {}".format(end, score))
-
+    save_model(clf)
     return score, end
 
 def search_best_params(X, y):
-    print(X.shape)
-    print(y.shape)
     Cs = [0.001, 0.01, 0.1, 1, 10]
     gammas = [0.001, 0.01, 0.1, 1]
     kernels = ['rbf', 'linear', 'sigmoid', 'poly']

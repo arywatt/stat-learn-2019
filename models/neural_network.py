@@ -105,7 +105,7 @@ def train_model(model, X_train, Y_train):
     # Train the model, iterating on the data in batches of 32 samples
     history = model.fit(X_train,
                         Y_train,
-                        epochs=100,
+                        epochs=200,
                         batch_size=32,
                         # validation_data=(X_test, one_hot_test_labels)
                         )
@@ -116,11 +116,6 @@ def train_model(model, X_train, Y_train):
 
     # Save the model
     save_model(model)
-
-
-
-    #plot_history(history)
-
     return model
 
 def save_model(model):

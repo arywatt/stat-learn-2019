@@ -121,25 +121,34 @@ def signal_peaks(data, f_s=17):
     N = len(data)
     T = 1 / f_s
 
+
+
     transformations = {'fft': get_fft_values, 'psd': get_psd_values}
     for colname in cols:
         col = data[colname]
         colpeaks = []
         for f_name, f in transformations.items():
+            n = 3
             x_values, y_values = f(col.values, T, N, f_s)
-            x_maxes, y_maxes = peaks(x_values, y_values,1)
-            #if len(y_maxes < 1):
-                #print(f_name+'_'+colname)
-            for i in range(len(x_maxes)):
-                features.append((f_name + '_' + colname + '_peak_x_' + str(i + 1), x_maxes[i]))
+            x_maxes, y_maxes = peaks(x_values, y_values,n)
 
-            for i in range(len(x_maxes)):
-                features.append((f_name + '_' + colname + '_peak_y_' + str(i + 1), y_maxes[i]))
+            if len(x_maxes) == n:
+                for i in range(len(x_maxes)):
+                    features.append((f_name + '_' + colname + '_peak_x_' + str(i + 1), x_maxes[i]))
+                    features.append((f_name + '_' + colname + '_peak_y_' + str(i + 1), y_maxes[i]))
+            else:
+                for i in range(len(x_maxes)):
+                    features.append((f_name + '_' + colname + '_peak_x_' + str(i + 1), x_maxes[i]))
+                    features.append((f_name + '_' + colname + '_peak_y_' + str(i + 1), y_maxes[i]))
 
-    #print(features)
+                for i in range(len(x_maxes),n):
+                    features.append((f_name + '_' + colname + '_peak_x_' + str(i + 1), 0))
+                    features.append((f_name + '_' + colname + '_peak_y_' + str(i + 1), 0))
+
+
 
     return features
 
 
 #FEATURE_FUNCTIONS = [fft_stats, psd_stats, signal_peaks]
-FEATURE_FUNCTIONS = [fft_stats, psd_stats,f_xyz_magnitude,f_mean,f_std,f_min,f_max]
+FEATURE_FUNCTIONS = [fft_stats, psd_stats,f_xyz_magnitude,f_mean,f_std,f_min,f_max,signal_peaks]

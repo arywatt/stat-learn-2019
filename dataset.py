@@ -120,27 +120,27 @@ def add_advanced_features(data):
 
     return advanced_features
 
-
-# Extract only record corresponding to  labels to study
-# Takes in input data to use
-# and labels choosen as an arry or integers
-# returns X_selected , Y_selected
-
-def extract_data(X, Y, labels):
-    sh = X.shape
-    # From Y extract only the data corresponding to labels chosen 
-    # First get each each label's line index
-    indexes = [x for  x in range(len(Y)) if Y[x][0] in set(labels)]
-
-    # Now extract line from X corresponding to indexes found
-    X_final = []
-    Y_final = []
-
-    for x in indexes:
-        X_final.append(X[x])
-        Y_final.append(Y[x])
-
-    return np.array(X_final).reshape(len(indexes),sh[1]),np.array(Y_final).reshape(len(indexes),1)
+#
+# # Extract only record corresponding to  labels to study
+# # Takes in input data to use
+# # and labels choosen as an arry or integers
+# # returns X_selected , Y_selected
+#
+# def extract_data(X, Y, labels):
+#     sh = X.shape
+#     # From Y extract only the data corresponding to labels chosen
+#     # First get each each label's line index
+#     indexes = [x for  x in range(len(Y)) if Y[x][0] in set(labels)]
+#
+#     # Now extract line from X corresponding to indexes found
+#     X_final = []
+#     Y_final = []
+#
+#     for x in indexes:
+#         X_final.append(X[x])
+#         Y_final.append(Y[x])
+#
+#     return np.array(X_final).reshape(len(indexes),sh[1]),np.array(Y_final).reshape(len(indexes),1)
 
 # The raw data is processed to remove empty values
 # fileanme : name of the file 
@@ -178,11 +178,6 @@ def process_record(filename, label, exp_id, numbers_of_records):
     ff2.write(buffer)
     ff2.close
     # ff.close
-
-    # df = pd.read_csv(EXPERIMENTS_CLEANED_DATA + filename, index_col='timestamp')
-    # n = len(df.index.values)
-    # experiment_column = [str(exp_id) for _ in range(len(df.index.values))]
-    # label_column = [str(label) for _ in range(len(df.index.values))]
 
     return exp_id
 
@@ -224,4 +219,5 @@ def load_data():
     final_dataset = pd.read_csv(FEATURED_DATASET)
     return final_dataset.values[:, :-1], final_dataset.values[:, -1]
 
-#create_data()
+#process_all_records()  uncomment to process all the data files
+create_data()  #uncomment to recreate the dataset
